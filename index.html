@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Video Clipper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="ambient ambient-left"></div>
+      <div class="ambient ambient-right"></div>
+
+      <section class="editor-card">
+        <div class="hint-pill">
+          <span class="hint-icon">i</span>
+          <span>Reference video duration must be 2–15.5 seconds.</span>
+        </div>
+
+        <header class="editor-header">
+          <div class="header-copy">
+            <h1>Select Clip</h1>
+          </div>
+
+          <div class="actions">
+            <label class="ghost-button upload-button" for="videoUpload">Upload</label>
+            <input id="videoUpload" type="file" accept="video/*" hidden />
+            <button class="ghost-button" type="button" id="cancelBtn">Cancel</button>
+            <button class="primary-button" type="button" id="confirmBtn">Confirm</button>
+          </div>
+        </header>
+
+        <main class="preview-area">
+          <div class="preview-stage">
+            <div class="video-frame" id="frameShell">
+              <video
+                id="previewVideo"
+                playsinline
+                preload="metadata"
+                poster=""
+              ></video>
+
+              <div class="empty-state" id="emptyState">
+                <div class="empty-badge">Video</div>
+                <h2>Upload a video to start clipping</h2>
+                <p>
+                  Preview any aspect ratio, trim with the timeline, and confirm the
+                  selected clip range.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="timeline-panel">
+          <button class="play-button" id="playToggle" type="button" aria-label="Play or pause">
+            <span class="play-icon"></span>
+          </button>
+
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span id="rangeLabel">00:00 - 00:08</span>
+              <span id="durationLabel">Clip length 8.0s</span>
+            </div>
+
+            <div class="timeline-track" id="timelineTrack">
+              <div class="thumbnail-strip" id="thumbnailStrip" aria-hidden="true"></div>
+
+              <div class="selection-window" id="selectionWindow">
+                <button class="trim-handle left" id="startHandle" type="button" aria-label="Adjust start"></button>
+                <div class="selection-fill"></div>
+                <button class="selection-body" id="selectionBody" type="button" aria-label="Move selected clip"></button>
+                <button class="trim-handle right" id="endHandle" type="button" aria-label="Adjust end"></button>
+              </div>
+
+              <div class="playhead" id="playhead"></div>
+            </div>
+          </div>
+        </footer>
+      </section>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
